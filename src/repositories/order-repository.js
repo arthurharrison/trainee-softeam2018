@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const Order = mongoose.model('Order');
 
 exports.getOne = async(id) => {
-    const res = await Order.findOne(id);
+    const res = await Order.findById(id).select({_id: 0, __v:0});
     return res;
 }
 
 exports.getAll = async() => {
-    const res = await Order.find();
+    const res = await Order.find().select({_id: 0, __v:0});
     return res;
 }
 
@@ -20,7 +20,7 @@ exports.create = async(data) => {
 }
 
 exports.update = async(id, data) => {
-    await Order.findByIdAndUpdate(id, {
+    const res = await Order.findByIdAndUpdate(id, {
         $set: {
             kindFood: data.kindFood,
             amount: data.amount,
@@ -32,6 +32,6 @@ exports.update = async(id, data) => {
 }
 
 exports.remove = async(id) => {
-    await Order.findByIdAndDelete(id);
+    const res = await Order.findByIdAndDelete(id);
     return res;
 }

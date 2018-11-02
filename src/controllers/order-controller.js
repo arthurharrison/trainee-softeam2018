@@ -29,11 +29,7 @@ exports.getAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try{
-        await repository.create({
-            kindFood: req.body.kindFood,
-            amount: require.body.amount,
-            price: req.body.price
-        });
+        await repository.create(req.body);
         res.status(201).send({
             message: 'Pedido cadastrado com sucesso!'
         });
@@ -46,11 +42,11 @@ exports.create = async(req, res, next) => {
 
 exports.update = async(req, res, next) => {
     try{
-        const data = await repository.put(req.params.id, req.body);
+        const data = await repository.update(req.params.id, req.body);
         if(!data) return res.status(404).send({
             message: 'Pedido não encontrado'
         });
-        res.status(200).send({
+        return res.status(200).send({
             message: 'Pedido atualizado com sucesso!'
         });
     } catch(e){
@@ -62,11 +58,11 @@ exports.update = async(req, res, next) => {
 
 exports.remove = async(req, res, next) => {
     try{
-        const data = await repository.delete(req.params.id);
+        const data = await repository.remove(req.params.id);
         if(!data) return res.status(404).send({
             message: 'Pedido não encontrado'
         });
-        res.status(200).send({
+        return res.status(200).send({
             message: 'Pedido removido com sucesso!'
         });
     } catch(e){
