@@ -6,19 +6,20 @@ const mongoose = require('mongoose');
 
 const app = express();
 const router = express.Router();
-
-//Connecta ao banco
+/*
+//Connecta ao banco remoto - mlab
 mongoose.connect('mongodb://rivanildojr:rivanildo07@ds235807.mlab.com:35807/softeam-trainee', {
     useNewUrlParser: true
 });
 
 mongoose.Promise = global.Promise;
-/*
+*/
+//Connecta ao banco local
 mongoose.connect('mongodb://localhost:27017/softeamTrainee', {
     useNewUrlParser: true
 });
 
-mongoose.Promise = global.Promise;*/
+mongoose.Promise = global.Promise;
 
 //Carrega os Models
 const Order = require('./models/order');
