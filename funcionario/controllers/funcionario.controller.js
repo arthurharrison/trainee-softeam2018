@@ -30,9 +30,32 @@ const create = async(req, res) => {
         return res.status(500).send({error: err, message: 'Erro interno do servidor'});
     }
 };
+//READ Funcionario
+const getAll = async(req, res) => {
+    try{
+        const funcionario = await Funcionario.find({}).select({_id: 0, _v: 0});
+        return res.status(200).send(funcionario);
+    }
+    catch (err) {
+        return res.status(500).send({error: err, message: 'Erro interno do servidor'});
+    }
+};
+//GetOne por nome de funcionário
+const getOne = async(req, res) => {
+    try{
+        const funcionario = await Funcionario.findOne({nome: req.params.nome.toUpperCase()}).select({_id: 0, _v: 0});
 
+        if(!funcionario) return res.status(404).send({message: 'Funcionário não encontrado'});
+        //retorna o primeiro funcionario encontrado
+        return res.status(200).send(funcionario);
+    }
+    catch (err) {
+        return res.status(500).send({error: err, message: 'Erro interno do servidor'});
+    }
+};
 
 module.exports = {
-    create
-
+    create,
+    getAll,
+    getOne
 };
