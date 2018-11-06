@@ -53,9 +53,23 @@ const getOne = async(req, res) => {
         return res.status(500).send({error: err, message: 'Erro interno do servidor'});
     }
 };
+//Deletar de funcionário
+const remove = async(req, res) => {
+    try{
+        const funcionario = await Funcionario.findOneAndRemove({nome: req.params.nome.toUpperCase()}).select({_id: 0, _v: 0});
 
+        if(!funcionario) return res.status(404).send({message: 'funcionario não encontrado'});
+
+        return res.status(200).send({message: 'funcionario deletado com sucesso'});
+    }
+    catch (err) {
+        return res.status(500).send({error: err, message: 'Erro interno do servidor'});
+    }
+};
 module.exports = {
     create,
     getAll,
-    getOne
+    getOne,
+    remove
+
 };
