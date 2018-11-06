@@ -10,8 +10,7 @@ const funcionarioModel = new Schema({
     },
     cpf: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
     email: {
         type: String

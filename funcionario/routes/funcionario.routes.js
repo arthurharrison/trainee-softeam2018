@@ -10,10 +10,13 @@ module.exports = (funcionarioRouter) => {
         .post(funcionarioController.create);
         
     funcionarioRouter.route('/funcionario/:nome')
-        //Rota para encontrar um funcionário
+        //Rota para exibir um unico funcionario
         .get(funcionarioController.getOne)
+
+        //Rota para Atualizar funcionário
+        .put(funcionarioController.update)
+
         //Rota para Deletar funcionário
         .delete(funcionarioController.remove);
-
     return funcionarioRouter;
 };
