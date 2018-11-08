@@ -1,0 +1,205 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Restaurante back-end",
+    "description": "Restaurante back-end documentação",
+    "termsOfService": "nullable",
+    "license": {
+      "name": "2018 © SOFTEAM",
+      "url": "http://softeam.com.br"
+    }
+  },
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/localhost:3000",
+  "paths": {
+    "/orders": {
+      "get": {
+        "summary": "Retorna todos os pedidos",
+        "description": "Rota que retornará todos os pedidos efetudos",
+        "operationId": "getAll",
+        "tags": [
+          "orders"
+        ],
+        "responses": {
+          "200": {
+            "description": "Uma lista com todos os membros",
+            "schema": {
+              "title": "ListaDePedidos",
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/order"
+              }
+            }
+          },
+          "500": {
+            "description": "Erro interno no servidor"
+          }
+        }
+      },
+      "post": {
+        "summary": "Adiciona um pedido",
+        "description": "Cria um pedido",
+        "operationId": "create",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "Restaurante",
+            "description": "Como criar um pedido",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido criado com sucesso"
+          },
+          "500": {
+            "description": "Erro interno no servidor"
+          }
+        }
+      }
+    },
+    "/orders/{_id}": {
+      "get": {
+        "summary": "Retorna um pedido.",
+        "description": "Rota que retornará um pedido pelo seu ID",
+        "operationId": "getOne",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "_id",
+            "type": "string",
+            "description": "O ID do pedido é único."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ok",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "404": {
+            "description": "Pedido não encontrado"
+          },
+          "500": {
+            "description": "Erro interno no servidor"
+          }
+        }
+      },
+      "put": {
+        "summary": "Atualiza um pedido",
+        "description": "Atualiza o pedido que contém mesmo ID fornecido",
+        "operationId": "update",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "_id",
+            "type": "string",
+            "description": "O ID do pedido é único"
+          },
+          {
+            "in": "body",
+            "name": "pedido",
+            "description": "O pedido que será criado.",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido atualizado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "404": {
+            "description": "Pedido não encontrado"
+          },
+          "500": {
+            "description": "Erro interno no servidor"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Deleta um pedido",
+        "description": "Deleta o pedido que contém mesmo ID fornecido",
+        "operationId": "remove",
+        "tags": [
+          "orders"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "required": true,
+            "name": "_id",
+            "type": "string",
+            "description": "O ID é único"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pedido removido com sucesso",
+            "schema": {
+              "$ref": "#/definitions/order"
+            }
+          },
+          "404": {
+            "description": "Pedido não encontrado"
+          },
+          "500": {
+            "description": "Erro interno no servidor"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "order": {
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string",
+          "description": "order id, ele criará um automaticamente",
+          "example": "5be1e25c7861d052f920349d"
+        },
+        "kindFood": {
+          "type": "string",
+          "description": "Tipo da comida",
+          "example": "Lasanha"
+        },
+        "amount": {
+          "type": "number",
+          "description": "Quantidade",
+          "example": 3
+        },
+        "price": {
+          "type": "number",
+          "description": "Preço da comida",
+          "example": 8
+        },
+        "extra": {
+          "type": "string",
+          "description": "Atributos extra par adicionar",
+          "example": "Com muita pimenta"
+        }
+      }
+    }
+  }
+}
