@@ -1,20 +1,29 @@
 {
-  "name": "node-api-lanchonete",
+  "name": "trainee-softeam2018",
   "version": "1.0.0",
-  "description": "",
+  "description": "Atividade para o processo seletivo da softeam 2018.2",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon"
+    "nodemon": "nodemon ./bin/server.js"
   },
   "dependencies": {
-    "body-parser": "~1.18.3",
-    "express": "~4.16.4",
-    "mongoose": "~5.3.9",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "http": "0.0.0",
+    "mongoose": "^5.3.9",
     "request": "~2.88.0"
   },
   "author": "Danielle Farias",
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^1.18.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arthurharrison/trainee-softeam2018.git"
+  },
+  "bugs": {
+    "url": "https://github.com/arthurharrison/trainee-softeam2018/issues"
+  },
+  "homepage": "https://github.com/arthurharrison/trainee-softeam2018#readme"
 }
