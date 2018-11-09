@@ -4,7 +4,7 @@
   "description": "Atividade para o processo seletivo da softeam 2018.2",
   "main": "server.js",
   "scripts": {
-    "nodemon": "nodemon ./bin/server.js"
+    "dev": "nodemon server.js"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
