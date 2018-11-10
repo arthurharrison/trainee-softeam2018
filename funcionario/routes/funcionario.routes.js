@@ -1,15 +1,18 @@
-const express = require('express');
+const router = require('express').Router();
 const funcionarioController = require('../controllers/funcionario.controller');
+const authController = require('../controllers/auth.controller');
 
-module.exports = (funcionarioRouter) => {
-    funcionarioRouter.route('/funcionario')
+funcionarioRouter= () => {
+    //usar para proteger as rotas do funcionario com a autenticação
+    //router.use(authController.isAuthenticated);
+    router.route('/')
         //Rota para exibir todos os funcionarios
         .get(funcionarioController.getAll)
 
         //Rota para criar um novo funcionário
         .post(funcionarioController.create);
         
-    funcionarioRouter.route('/funcionario/:nome')
+    router.route('/:nome')
         //Rota para exibir um unico funcionario
         .get(funcionarioController.getOne)
 
@@ -18,5 +21,7 @@ module.exports = (funcionarioRouter) => {
 
         //Rota para Deletar funcionário
         .delete(funcionarioController.remove);
-    return funcionarioRouter;
+    return router;
 };
+
+module.exports = funcionarioRouter;
