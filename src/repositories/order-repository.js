@@ -15,6 +15,10 @@ exports.getAll = async() => {
 
 exports.create = async(data) => {
     const order = new Order(data);
+    if((order.kindFood && order.amount) && order.price)
+        return true
+    else    
+        return false
     //salva no BD
     await order.save();
 }

@@ -2,10 +2,11 @@
   "name": "trainee-softeam2018",
   "version": "1.0.0",
   "description": "projeto de um restaurante",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "start": "node ./bin/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --coverage --verbose --forceExit",
+    "test:watch": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,9 @@
     "mongoose": "^5.3.8"
   },
   "devDependencies": {
-    "nodemon": "^1.18.5"
+    "jest": "^23.6.0",
+    "jest-cli": "^23.6.0",
+    "nodemon": "^1.18.5",
+    "supertest": "^3.3.0"
   }
 }

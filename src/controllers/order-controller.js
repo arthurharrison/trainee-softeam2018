@@ -29,7 +29,8 @@ exports.getAll = async(req, res, next) => {
 
 exports.create = async(req, res, next) => {
     try{
-        await repository.create(req.body);
+        const data = await repository.create(req.body);
+        if(!data) return res.status(400).send({message: 'Pedido incompleto'});
         res.status(201).send({
             message: 'Pedido cadastrado com sucesso!'
         });
@@ -53,6 +54,7 @@ exports.update = async(req, res, next) => {
         res.status(500).send({
             message: 'Erro interno no servidor'
         });
+
     }
 }
 
