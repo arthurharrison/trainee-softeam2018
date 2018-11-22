@@ -1,7 +1,7 @@
 const Gerente = require('../models/gerente.model.js');
 
 // Create and Save a new Gerente
-exports.create = (req, res) => {
+exports.create = async (req, res) => {
     // Validate request
     if(!req.body.cpf) {
         return res.status(400).send({
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 };
 
 // Retrieve and return all gerentes from the database.
-exports.findAll = (req, res) => {
+exports.findAll = async (req, res) => {
     Gerente.find()
     .then(gerentes => {
         res.send(gerentes);
@@ -42,32 +42,29 @@ exports.findAll = (req, res) => {
 };
 
 // Find a single gerente with a gerenteId
-exports.findOne = (req, res) => {
-    exports.findOne = (req, res) => {
-        Gerente.findById(req.params.gerenteId)
-        .then(gerente => {
-            if(!gerente) {
-                return res.status(404).send({
-                    message: "Gerente not found with id " + req.params.gerenteId
-                });            
-            }
-            res.send(gerente);
-        }).catch(err => {
-            if(err.kind === 'ObjectId') {
-                return res.status(404).send({
-                    message: "Gerente not found with id " + req.params.gerenteId
-                });                
-            }
-            return res.status(500).send({
-                message: "Error retrieving gerente with id " + req.params.gerenteId
-            });
+exports.findOne = async (req, res) => {
+    await Gerente.findById(req.params.gerenteId)
+    .then(gerente => {
+        if(!gerente) {
+            return res.status(404).send({
+                message: "Gerente not found with id " + req.params.gerenteId
+            });            
+        }
+        res.send(gerente);
+    }).catch(err => {
+        if(err.kind === 'ObjectId') {
+            return res.status(404).send({
+                message: "Gerente not found with id " + req.params.gerenteId
+            });                
+        }
+        return res.status(500).send({
+            message: "Error retrieving gerente with id " + req.params.gerenteId
         });
-    };
-
+    });
 };
 
 // Update a gerente identified by the gerenteId in the request
-exports.update = (req, res) => {
+exports.update = async (req, res) => {
     // Validate Request
     if(!req.body.cpf) {
         return res.status(400).send({
@@ -102,7 +99,7 @@ exports.update = (req, res) => {
 };
 
 // Delete a gerente with the specified gerenteId in the request
-exports.delete = (req, res) => {
+exports.delete = async (req, res) => {
     Gerente.findByIdAndRemove(req.params.gerenteId)
     .then(gerente => {
         if(!gerente) {

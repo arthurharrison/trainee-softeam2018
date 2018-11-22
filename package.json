@@ -4,7 +4,8 @@
   "description": "Atividade para o processo seletivo da softeam 2018.2",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
@@ -16,6 +17,7 @@
   "author": "Danielle Farias",
   "license": "ISC",
   "devDependencies": {
+    "jest": "^23.6.0",
     "nodemon": "^1.18.6",
     "supertest": "^3.3.0"
   },
